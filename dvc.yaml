@@ -14,3 +14,10 @@ stages:
     - data/processed/train.parquet
     - data/processed/val.parquet
     - data/processed/test.parquet
+  training:
+    cmd: python -m src.training
+    deps:
+    - src/training.py
+    - data/processed
+    outs:
+    - models/model.pkl

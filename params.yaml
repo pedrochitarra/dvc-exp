@@ -10,3 +10,11 @@ data_split:
   train_split: 0.6
   test_split: 0.2
   val_split: 0.2
+
+training:
+  n_estimators: 100
+  criterion: squared_error # "squared_error", "absolute_error", "friedman_mse", "poisson"
+  max_features: 1.0 # {"sqrt", "log2", None}, int or float, default=1.0
+  min_samples_leaf: 1 # int or float, default=1
+  model_file: models/model.pkl
+  max_depth: null #int, default=None

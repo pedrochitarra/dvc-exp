@@ -21,3 +21,17 @@ stages:
     - data/processed
     outs:
     - models/model.pkl
+  evaluation:
+    cmd: python -m src.evaluation
+    deps:
+    - src/evaluation.py
+    - models/model.pkl
+    - data/processed
+    outs:
+    - eval
+metrics:
+- eval/metrics.json
+plots:
+- eval/plots/metrics:
+    x: step
+- eval/plots/images

@@ -1,0 +1,12 @@
+random_seed: 2506
+
+load_data:
+  output_file: data/raw/diabetes.parquet
+
+data_split:
+  train_data_path: data/processed/train.parquet
+  val_data_path: data/processed/val.parquet
+  test_data_path: data/processed/test.parquet
+  train_split: 0.6
+  test_split: 0.2
+  val_split: 0.2

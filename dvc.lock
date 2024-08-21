@@ -1,0 +1,39 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python -m src.load_data
+    deps:
+    - path: src/load_data.py
+      hash: md5
+      md5: aa570c94fcca2ccec5b7579b8eed0ad2
+      size: 733
+    outs:
+    - path: data/raw/diabetes.parquet
+      hash: md5
+      md5: dd81a219edcb68836f6abfb608539aa7
+      size: 20470
+  data_split:
+    cmd: python -m src.data_split
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 9b0badb0f752b2837dda02491ce4589d.dir
+      size: 20470
+      nfiles: 1
+    - path: src/data_split.py
+      hash: md5
+      md5: 14070281ab0eef1668660abc2b1cf0bb
+      size: 1634
+    outs:
+    - path: data/processed/test.parquet
+      hash: md5
+      md5: 625025e387ecf0f17195e0c6547000ae
+      size: 8515
+    - path: data/processed/train.parquet
+      hash: md5
+      md5: dc743a736b5014526b201d4fede33961
+      size: 15971
+    - path: data/processed/val.parquet
+      hash: md5
+      md5: bb29fdd8c21ad44eb6dbf4bde137b6ed
+      size: 8627

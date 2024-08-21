@@ -7,6 +7,10 @@ stages:
       hash: md5
       md5: 1e118385241295f6ef1dbb6c33ddc475
       size: 733
+    params:
+      params.yaml:
+        load_data:
+          output_file: data/raw/diabetes.parquet
     outs:
     - path: data/raw/diabetes.parquet
       hash: md5
@@ -24,6 +28,16 @@ stages:
       hash: md5
       md5: 14070281ab0eef1668660abc2b1cf0bb
       size: 1634
+    params:
+      params.yaml:
+        data_split:
+          train_data_path: data/processed/train.parquet
+          val_data_path: data/processed/val.parquet
+          test_data_path: data/processed/test.parquet
+          train_split: 0.6
+          test_split: 0.2
+          val_split: 0.2
+        random_seed: 2506
     outs:
     - path: data/processed/test.parquet
       hash: md5
@@ -49,11 +63,21 @@ stages:
       hash: md5
       md5: ba726b8322479fb219cda935eb3770e2
       size: 1350
+    params:
+      params.yaml:
+        random_seed: 2506
+        training:
+          n_estimators: 300
+          criterion: absolute_error
+          max_features: 1.0
+          min_samples_leaf: 1
+          model_file: models/model.pkl
+          max_depth:
     outs:
     - path: models/model.pkl
       hash: md5
-      md5: 4c14698261b5fa9115e51a5ca222cbe8
-      size: 2384654
+      md5: f94a39ac5f76da998e9ca15978dfc739
+      size: 7012739
   evaluation:
     cmd: python -m src.evaluation
     deps:
@@ -64,8 +88,8 @@ stages:
       nfiles: 4
     - path: models/model.pkl
       hash: md5
-      md5: 4c14698261b5fa9115e51a5ca222cbe8
-      size: 2384654
+      md5: f94a39ac5f76da998e9ca15978dfc739
+      size: 7012739
     - path: src/evaluation.py
       hash: md5
       md5: 3bdcb21729599432713b7a0f5ee1c3f1
@@ -73,6 +97,6 @@ stages:
     outs:
     - path: eval
       hash: md5
-      md5: fefe25faf42b0ce155def67e7b018bcd.dir
-      size: 15242
+      md5: c71f6fe9c20f0bb958f33029b628610a.dir
+      size: 14379
       nfiles: 5

@@ -5,6 +5,8 @@ stages:
     - src/load_data.py
     outs:
     - data/raw/diabetes.parquet
+    params:
+    - load_data
   data_split:
     cmd: python -m src.data_split
     deps:
@@ -14,6 +16,9 @@ stages:
     - data/processed/train.parquet
     - data/processed/val.parquet
     - data/processed/test.parquet
+    params:
+    - data_split
+    - random_seed
   training:
     cmd: python -m src.training
     deps:
@@ -21,6 +26,9 @@ stages:
     - data/processed
     outs:
     - models/model.pkl
+    params:
+    - training
+    - random_seed
   evaluation:
     cmd: python -m src.evaluation
     deps:

@@ -1,0 +1,16 @@
+stages:
+  load_data:
+    cmd: python -m src.load_data
+    deps:
+    - src/load_data.py
+    outs:
+    - data/raw/diabetes.parquet
+  data_split:
+    cmd: python -m src.data_split
+    deps:
+    - src/data_split.py
+    - data/raw
+    outs:
+    - data/processed/train.parquet
+    - data/processed/val.parquet
+    - data/processed/test.parquet

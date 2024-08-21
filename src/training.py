@@ -3,8 +3,8 @@ import os
 import pickle
 
 import pandas as pd
-from sklearn.ensemble import RandomForestRegressor
 import yaml
+from sklearn.ensemble import RandomForestRegressor
 
 
 def main():

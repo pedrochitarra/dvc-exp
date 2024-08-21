@@ -3,8 +3,8 @@ parquet file."""
 import os
 
 import pandas as pd
-from sklearn.datasets import load_diabetes
 import yaml
+from sklearn.datasets import load_diabetes
 
 
 def main():
